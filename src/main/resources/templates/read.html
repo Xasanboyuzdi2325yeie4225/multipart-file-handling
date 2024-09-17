@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>READ</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>type</th>
+        <th>created</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="f:${files}">
+        <td th:text="${f.id}"></td>
+        <td th:text="${f.name}"></td>
+        <td th:text="${f.type}"></td>
+        <td th:text="${f.createdAt}"></td>
+        <td>
+            <a th:href="@{/file/download(id=${f.id})}">DOWNLOAD</a>
+        </td>
+        <td >
+            <form th:action="@{/file/delete(id=${f.id})}" method="post" >
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
